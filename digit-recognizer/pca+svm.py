@@ -5,16 +5,17 @@ from sklearn.decomposition import PCA
 # f-score: 0.88 for n_train=5000 and n_cross=2500
 # f-score: 0.88 for n_train=5000 and n_cross=5000
 # out of memory with 1GB ram for n_train=7500
+# score from kaggle = 0.91214
 train = pd.read_csv('data/train.csv')
 test = pd.read_csv('data/test.csv')
 n_train = 5000
 n_cross = 2500
-train_x = train.ix[:n_train,1:].values.astype('int32')
-train_y = train.ix[:n_train,0].values.astype('int32')
-cross_x = train.ix[n_train:n_train+n_cross,1:].values.astype('int32')
-cross_y = train.ix[n_train:n_train+n_cross,0].values.astype('int32')
+train_x = train.ix[:n_train,1:].values.astype('uint8')
+train_y = train.ix[:n_train,0].values.astype('uint8')
+cross_x = train.ix[n_train:n_train+n_cross,1:].values.astype('uint8')
+cross_y = train.ix[n_train:n_train+n_cross,0].values.astype('uint8')
 n_test = 5000
-test_x = test.ix[:n_test,:].values.astype('int32')
+test_x = test.ix[:n_test,:].values.astype('uint8')
 
 # PCA reduction
 pca = PCA(n_components=30, whiten=True)
