@@ -1,16 +1,19 @@
 import pandas as pd
 from sklearn import svm, metrics
 from sklearn.decomposition import PCA
-# f-score: 0.85 for n_train=2500 and n_cross=2500
-# f-score: 0.88 for n_train=5000 and n_cross=2500
-# f-score: 0.88 for n_train=5000 and n_cross=5000
+# f-score: 0.85 for n_train=2500, n_cross=2500, gamma=0.001
+# f-score: 0.88 for n_train=5000, n_cross=2500, gamma=0.001
+# f-score: 0.88 for n_train=5000, n_cross=5000, gamma=0.001
+# f-score: 0.95 for n_train=2000, n_cross=2500, gamma=0
+# f-score: 0.95 for n_train=4000, n_cross=2500, gamma=0
 # out of memory with 1GB ram for n_train=7500
-# score from kaggle = 0.91757 (https://www.kaggle.com/wonjohnchoi/digit-recognizer/pca-svm)
-
+# score from kaggle (https://www.kaggle.com/wonjohnchoi/digit-recognizer/pca-svm)
+# 0.91757 for n_train=all, n_components=30, gamma=0.001
+# 0.97886 for n_train=all, n_components=30, gamma=0
 print 'Input train, cross, test'
 train = pd.read_csv('data/train.csv')
 test = pd.read_csv('data/test.csv')
-n_train = 5000
+n_train = 4000
 n_cross = 2500
 train_x = train.ix[:n_train,1:].values.astype('uint8')
 train_y = train.ix[:n_train,0].values.astype('uint8')
@@ -32,7 +35,7 @@ test_x = pca.transform(test_x)
 # print train_x[0], train_y[0]
 
 print 'SVM classifier'
-clf = svm.SVC(gamma=0.001)
+clf = svm.SVC()
 clf.fit(train_x, train_y)
 
 print '2-fold cross validation'
