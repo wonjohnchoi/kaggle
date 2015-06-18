@@ -5,7 +5,7 @@ from sklearn.decomposition import PCA
 # f-score: 0.88 for n_train=5000 and n_cross=2500
 # f-score: 0.88 for n_train=5000 and n_cross=5000
 # out of memory with 1GB ram for n_train=7500
-# score from kaggle = 0.91214
+# score from kaggle = 0.91214 (https://www.kaggle.com/wonjohnchoi/digit-recognizer/pca-svm)
 train = pd.read_csv('data/train.csv')
 test = pd.read_csv('data/test.csv')
 n_train = 5000
