@@ -6,14 +6,19 @@ from sklearn.decomposition import PCA
 # f-score: 0.88 for n_train=5000, n_cross=5000, gamma=0.001
 # f-score: 0.95 for n_train=2000, n_cross=2500, gamma=0
 # f-score: 0.95 for n_train=4000, n_cross=2500, gamma=0
+# f-score: 0.94 for n_train=3000, n_cross=2500, gamma=0, n_components=36
+# f-score: 0.94 for n_train=3000, n_cross=2500, gamma=0, n_components=35
+# f-score: 0.94 for n_train=3000, n_cross=2500, gamma=0, n_components=34
 # out of memory with 1GB ram for n_train=7500
 # score from kaggle (https://www.kaggle.com/wonjohnchoi/digit-recognizer/pca-svm)
 # 0.91757 for n_train=all, n_components=30, gamma=0.001
 # 0.97886 for n_train=all, n_components=30, gamma=0
+# 0.98243 for n_train=all, n_components=35, gamma=0
+# 0.98243 for n_train=all, n_components=36, gamma=0
 print 'Input train, cross, test'
 train = pd.read_csv('data/train.csv')
 test = pd.read_csv('data/test.csv')
-n_train = 4000
+n_train = 3000
 n_cross = 2500
 train_x = train.ix[:n_train,1:].values.astype('uint8')
 train_y = train.ix[:n_train,0].values.astype('uint8')
@@ -23,7 +28,7 @@ n_test = 5000
 test_x = test.ix[:n_test,:].values.astype('uint8')
 
 print 'PCA reduction'
-pca = PCA(n_components=40, whiten=True)
+pca = PCA(n_components=36, whiten=True)
 pca.fit(train_x)
 train_x = pca.transform(train_x)
 cross_x = pca.transform(cross_x)
