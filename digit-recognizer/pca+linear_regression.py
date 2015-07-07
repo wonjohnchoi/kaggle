@@ -1,3 +1,4 @@
+# kaggle submission (https://www.kaggle.com/wonjohnchoi/digit-recognizer/pca-linear-regression2)
 import pandas as pd
 from sklearn import metrics
 from sklearn.decomposition import PCA
